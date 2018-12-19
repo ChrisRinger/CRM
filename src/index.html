@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket.IO chat - Home</title>
+    <link rel="stylesheet" href="npm/bulma/css/bulma.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container">
+    <a href="/" alt="home">Home</a>
+    <a href="/nd-room" alt="nd-room">Second room</a>
+
+    <div class="columns">
+        <div class="column is-two-thirds">
+
+            <transition name="fade">
+                <input-name v-bind:is-logged="isLogged" v-on:set-name="setName"></input-name>
+            </transition>
+
+            <transition name="slide-fade">
+                <div class="box" v-show="isLogged">
+                    <div class="messages">
+                        <ul>
+                            <li v-for="message in messages">
+                                <message v-bind:message-data="message"></message>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <input-message v-on:send-message="sendMessage"></input-message>
+                </div>
+            </transition>
+        </div>
+
+        <div class="column">
+            <nav class="panel">
+                <users v-bind:users="users"></users>
+            </nav>
+        </div>
+    </div>
+
+    <transition name="chat-box">
+        <div class="columns">
+            <div class="column is-two-fifths is-offset-8">
+                <div class="box">
+                    <article class="media">
+
+                        <private-message></private-message>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </transition>
+
+</div>
+
+<script src="npm/vue/dist/vue.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>
+<script>
+
+
+    //    $(function () {
+    //
+    //        $('form').submit(function(){
+    //            socket.emit('chat message', $('#m').val());
+    //            $('#m').val('');
+    //            return false;
+    //        });
+    //        socket.on('chat message', function(msg){
+    //            $('#messages').append($('<li>').text(msg));
+    //        });
+    //    });
+</script>
+
+</body>
+</html>
