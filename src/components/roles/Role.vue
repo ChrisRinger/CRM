@@ -6,7 +6,6 @@
                 :rules="nameRules"
                 required
         ></v-text-field>
-
         <v-btn type="submit" small color="primary">Add role</v-btn>
     </v-form>
 </template>
@@ -43,8 +42,6 @@
                 if (!this.valid) {
                     return
                 }
-
-                console.log(this.item);
 
                 this.$store.dispatch('storeRole', this.item);
 

@@ -1,11 +1,7 @@
 <template>
   <v-app>
-    <router-view>
-
-    </router-view>
-      <router-view name="chat">
-
-      </router-view>
+    <router-view></router-view>
+      <router-view name="chat"></router-view>
   </v-app>
 </template>
 
